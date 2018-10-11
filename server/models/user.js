@@ -7,6 +7,18 @@ var userSchema = new Schema({
         required:  true,
         trim: true,
         minlength: 1
+    },
+    firstName: {
+        type: String,
+        required: true,
+        minlength: 1,
+        trim: true
+    },
+    lastName: {
+        type: String,
+        required: true,
+        minlength: 1,
+        trim: true
     }
 });
 
