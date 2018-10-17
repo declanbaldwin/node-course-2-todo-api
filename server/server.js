@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const _ = require('lodash');
 const port = process.env.PORT || 3000;
 const { ObjectID } = require('mongodb');
 
@@ -74,6 +75,33 @@ app.delete('/todos/:id', (request, response) => {
         if(!todo) {
             return response.status(404).send();
         }
+        response.send({todo});
+    }).catch((error) => {
+        response.status(400).send();
+    });
+});
+
+app.patch('/todos/:id', (request, response) => {
+    let id = request.params.id;
+    //Creates object from request with only the text and completed properties
+    let body = _.pick(request.body, ['text', 'completed']);
+
+    if (!ObjectID.isValid(id)) {
+        return response.status(404).send();
+    }
+
+    if(_.isBoolean(body.completed) && body.completed) {
+        body.completedAt = new Date().getTime();
+    } else {
+        body.completed = false;
+        body.completedAt = null;
+    }
+
+    Todo.findByIdAndUpdate(id, {$set: body}, {new: true}).then((todo) => {
+        if(!todo) {
+            return response.status(404).send();
+        }
+
         response.send({todo});
     }).catch((error) => {
         response.status(400).send();
