@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Todo App</title>
+</head>
+<body>
+    <h1>Please Complete Actions</h1>
+    <form action ="/addtask" method="POST">
+    <input type="text" name="newtask" placeholder="add new task">        
+    <button> Add Task </button>
+    <ul>
+    <% todos.forEach((todos) => { %>
+        <li><%= todos.text %></li>
+    <% }); %>
+</ul>
+</body>
+</html>

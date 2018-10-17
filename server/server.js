@@ -7,10 +7,22 @@ const { ObjectID } = require('mongodb');
 var { mongoose } = require('./db/mongoose');
 var { Todo } = require('./models/todo');
 var { User } = require('./models/user');
-
 var app = express();
 
+
+app.set('view engine', 'ejs');
+
 app.use(bodyParser.json());
+
+app.get("/", (request, response) => {
+    Todo.find().then((todos) => {
+        response.render("index.ejs", {
+            todos: todos
+        });
+    }, (error) => {
+        response.status(400).send(error);
+    });
+});
 
 app.post('/todos', (request, response) => {
     console.log(request.body);
