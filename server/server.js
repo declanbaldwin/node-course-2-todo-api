@@ -9,10 +9,10 @@ var { Todo } = require('./models/todo');
 var { User } = require('./models/user');
 var app = express();
 
-
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (request, response) => {
     Todo.find().then((todos) => {
@@ -21,6 +21,49 @@ app.get("/", (request, response) => {
         });
     }, (error) => {
         response.status(400).send(error);
+    });
+});
+
+app.post('/update/:id', (request, response) => {
+    console.log(JSON.stringify(request.body));
+    let id = request.body.id;
+
+    if (!ObjectID.isValid(id)) {
+        console.log('id is not an object');
+        return response.status(404).send();
+    }
+    console.log('id is an object');
+
+    let update = {
+        text: request.body.newText,
+        completed: true
+    }
+
+    Todo.findByIdAndUpdate(id, update).then((todo) => {
+        if(!todo) {
+            return response.status(404).send();
+        }
+
+        response.send({todo});
+    }).catch((error) => {
+        response.status(400).send();
+    });
+    response.redirect("/");
+});
+
+app.post("/update", (request, response) => {
+    console.log(JSON.stringify(request.body));
+    let query = {"text": request.body.text};
+    let update = {"text": request.body.newText};
+    Todo.findOneAndUpdate(query, update).then((todo) => {
+        if(!todo) {
+            return response.status(404).send();
+        }
+
+        response.send({todo});
+        response.redirect("/");
+    }).catch((error) => {
+        response.status(400).send();
     });
 });
 

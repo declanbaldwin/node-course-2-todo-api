@@ -9,13 +9,15 @@
 </head>
 <body>
     <h1>Please Complete Actions</h1>
-    <form action ="/addtask" method="POST">
-    <input type="text" name="newtask" placeholder="add new task">        
-    <button> Add Task </button>
-    <ul>
-    <% todos.forEach((todos) => { %>
-        <li><%= todos.text %></li>
+
+    
+    <% todos.forEach( function( todos ){ %>
+        <form action="/update/<%= todos._id %>" method="POST">
+            <label><%= todos.text %></label>
+            <input type="hidden" name="id" value="<%= todos._id %>">
+            <input type="text" name="newText" placeholder="add new task">        
+            <button>Complete Task</button>
+        </form>
     <% }); %>
-</ul>
 </body>
 </html>
