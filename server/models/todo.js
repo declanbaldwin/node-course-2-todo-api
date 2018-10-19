@@ -14,6 +14,12 @@ var Todo = mongoose.model('Todo', {
     completedAt: {
         type: Number,
         default: null
+    },
+    filepath: {
+        type: String,
+        minlength: 1,
+        trim: true,
+        default: null
     }
 });
 

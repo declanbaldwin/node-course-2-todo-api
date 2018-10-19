@@ -8,16 +8,22 @@
     <title>Todo App</title>
 </head>
 <body>
-    <h1>Please Complete Actions</h1>
+    <h1>Please Complete The Tasks By Uploading The Following Images </h1>
 
     
     <% todos.forEach( function( todos ){ %>
-        <form action="/update/<%= todos._id %>" method="POST">
-            <label><%= todos.text %></label>
-            <input type="hidden" name="id" value="<%= todos._id %>">
-            <input type="text" name="newText" placeholder="add new task">        
-            <button>Complete Task</button>
-        </form>
+        <% if (todos.completed) { %>
+            <p>Task: <%= todos.text %></p>
+            <p>Status: Completed</p>
+        <% } else { %>
+                <form action="/file/<%= todos._id %>" method="POST" enctype="multipart/form-data">
+                    <label>Task: <%= todos.text %></label>
+                    <input type="hidden" name="id" value="<%= todos._id %>">
+                    <input type="file" name="file-to-upload">
+                    <button>Complete Task</button>
+                </form>
+            <p>Status: To be completed</p>
+        <% } %>
     <% }); %>
 </body>
 </html>

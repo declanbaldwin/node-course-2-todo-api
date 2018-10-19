@@ -72,7 +72,7 @@ describe('POST /todos', () => {
 
 });
 
-describe('Get /todos', () => {
+describe('GET /todos', () => {
     it('should get all todos', (done) => {
         request(app)
             .get('/todos')
@@ -81,7 +81,7 @@ describe('Get /todos', () => {
                 expect(response.body.todos.length).toBe(2);
             })
             .end(done);
-    })
+    });
 });
 
 describe('GET /todos/:id', () => {

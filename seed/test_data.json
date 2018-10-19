@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "descr": "A photograph representing the Automotive category"
+    },
+    {
+        "id": 2,
+        "descr": "A photograph representing the Baby Products category"
+    },
+    {
+        "id": 3,
+        "descr": "A photograph representing the Beauty category"
+    },
+    {
+        "id": 4,
+        "descr": "A photograph representing the Books category"
+    },
+    {
+        "id": 5,
+        "descr": "A photograph representing the Business, Industry and Science category"
+    },
+    {
+        "id": 6,
+        "descr": "A photograph representing the CDs and Vinyl category"
+    },
+    {
+        "id": 7,
+        "descr": "A photograph representing the Clothing category"
+    },
+    {
+        "id": 8,
+        "descr": "A photograph representing the Computer and Accessories category"
+    },
+    {
+        "id": 9,
+        "descr": "A photograph representing the DIY and Tools category"
+    },
+    {
+        "id": 10,
+        "descr": "A photograph representing the DVD and Blu-ray category"
+    }
+]
