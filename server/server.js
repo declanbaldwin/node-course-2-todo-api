@@ -1,4 +1,6 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 const { ObjectID } = require('mongodb');
@@ -43,6 +45,15 @@ app.post('/delete', (request, response) => {
             }
         }).then(() => {
             console.log('reset');
+            const directory = './uploads';
+
+            fs.readdir(directory, (error, files) => {
+                if (error) return response.status(404).send();
+                for (const file of files) {
+                    fs.unlink(path.join(directory, file));
+                }
+            });
+            console.log('deleted files');
         });
 });
 
@@ -68,6 +79,7 @@ app.post('/file/:id', upload.single('file-to-upload'), (request, response) => {
 
     Todo.findByIdAndUpdate(id, update).then((todo) => {
         if (!todo) {
+            console.log('Unable to find todo');
             return response.status(404).send();
         }
 
