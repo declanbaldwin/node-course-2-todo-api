@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "text": "A photograph representing the Automotive category",
+        "completed": false,
+        "filepath" : null
+    },
+    {
+        "id": 2,
+        "text": "A photograph representing the Baby Products category",
+        "completed": false,
+        "filepath" : null
+    },
+    {
+        "id": 3,
+        "text": "A photograph representing the Beauty category",
+        "completed": false,
+        "filepath" : null
+    },
+    {
+        "id": 4,
+        "text": "A photograph representing the Books category",
+        "completed": false,
+        "filepath" : null
+    },
+    {
+        "id": 5,
+        "text": "A photograph representing the Business, Industry and Science category",
+        "completed": false,
+        "filepath" : null
+    },
+    {
+        "id": 6,
+        "text": "A photograph representing the CDs and Vinyl category",
+        "completed": false,
+        "filepath" : null
+    },
+    {
+        "id": 7,
+        "text": "A photograph representing the Clothing category",
+        "completed": false,
+        "filepath" : null
+    },
+    {
+        "id": 8,
+        "text": "A photograph representing the Computer and Accessories category",
+        "completed": false,
+        "filepath" : null
+    },
+    {
+        "id": 9,
+        "text": "A photograph representing the DIY and Tools category",
+        "completed": false,
+        "filepath" : null
+    },
+    {
+        "id": 10,
+        "text": "A photograph representing the DVD and Blu-ray category",
+        "completed": false,
+        "filepath" : null
+    }
+]

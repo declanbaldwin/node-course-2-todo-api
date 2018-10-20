@@ -11,15 +11,15 @@ var Todo = mongoose.model('Todo', {
         type: Boolean,
         default: false
     },
-    completedAt: {
-        type: Number,
-        default: null
-    },
     filepath: {
         type: String,
         minlength: 1,
         trim: true,
         default: null
+    },
+    id: {
+        required: true,
+        type: Number
     }
 });
 

@@ -21,6 +21,31 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/", (request, response) => {
+    Todo.find().then((todos) => {
+        response.render("index.ejs", {
+            todos: todos
+        });
+    }, (error) => {
+        response.status(400).send(error);
+    });
+});
+
+app.post('/delete', (request, response) => {
+    console.log('delete');
+    response.redirect('/');
+    Todo.updateMany({},
+        {
+            $set:
+            {
+                "completed": false,
+                "filepath": null
+            }
+        }).then(() => {
+            console.log('reset');
+        });
+});
+
 app.post('/file/:id', upload.single('file-to-upload'), (request, response) => {
     console.log(JSON.stringify(request.file));
     let filepath = request.file.path;
@@ -30,8 +55,8 @@ app.post('/file/:id', upload.single('file-to-upload'), (request, response) => {
         console.log('id is not an object');
         return response.status(404).send();
     }
-    
-    if(!filepath) {
+
+    if (!filepath) {
         console.log('Filepath not found');
         return response.status(404).send();
     }
@@ -51,16 +76,6 @@ app.post('/file/:id', upload.single('file-to-upload'), (request, response) => {
         response.status(400).send();
     });
     response.redirect('/');
-});
-
-app.get("/", (request, response) => {
-    Todo.find().then((todos) => {
-        response.render("index.ejs", {
-            todos: todos
-        });
-    }, (error) => {
-        response.status(400).send(error);
-    });
 });
 
 app.listen(port, () => {
